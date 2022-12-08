@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript : Proxy</title>
+</head>
+
+<body>
+    <!-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy -->
+    <div id="app">
+        <h1>Login</h1>
+        <input type="text" id="name" value="matthew">
+        <button>Happy Coding!! : {{firstName}} {{lastName}}</button>
+    </div>
+    <script>
+        const app = document.getElementById('app')
+        const domNodes = app.childNodes
+        const buttonChild = domNodes[5]
+        let btnTxt = buttonChild.textContent
+        btnTxt = btnTxt.replace(/{{firstName}}/g, 'matthew')
+        btnTxt = btnTxt.replace(/{{lastName}}/g, 'lee')
+        buttonChild.textContent = btnTxt
+
+        // proxy 
+        const input = document.getElementById('name')
+        let firstName = new Proxy(input, {
+            get(target, prop, receiver) {
+                if(prop === 'value') {
+                    return target[prop]
+                }
+               return Reflect.get(target, prop, receiver) 
+            },
+            set(target, prop, newVal) {
+                if (prop === 'value') {
+                    return target[prop] = newVal
+                }
+                return Reflect.set(target, prop, newVal)
+            }
+        })
+
+    </script>
+</body>
+
+</html>

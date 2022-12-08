@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attribute Bindngs </title>
+  <style>
+    .blue { color: blue; }
+    .red { color: red;}
+  </style>
+</head>
+<body>
+  <div id="app">
+    <span :class="red" :id="okId">Jack, are you OK?</span>
+  </div> 
+  <script type="module">
+    import { createApp, ref } from '../js/vue.esm-browser.js'
+    createApp({
+      setup() {
+        const red = ref("red")
+        const okId = ref("jack")
+        return {
+          red,
+          okId
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>

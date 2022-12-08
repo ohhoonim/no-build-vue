@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>composition</title>
+</head>
+<body>
+    <div id="app">
+        {{message}} : {{ counter.count}}
+    </div>
+<script type="module">
+    import {createApp, ref, reactive} from '../js/vue.esm-browser.js'
+
+    createApp({
+        setup() {
+            const message = ref('hello world2')
+            const counter = reactive({count: 4})
+            return {
+                message,
+                counter
+            }
+        }
+    }).mount('#app')
+
+</script>    
+
+</body>
+</html>

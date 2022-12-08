@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>delclarative rendering - options</title>
+</head>
+
+<body>
+
+    <div id="app">
+        sample : {{ message }}: {{counter.count}}
+    </div>
+
+    <script type="module">
+        import { createApp } from '../js/vue.esm-browser.js'
+
+        createApp({
+            data() {
+                const message = 'Hello World!!!!'
+                const counter = {
+                    count: 4
+                }
+                return {
+                    message,
+                    counter
+                }
+            }
+        }).mount('#app')
+
+    </script>
+</body>
+
+</html>
