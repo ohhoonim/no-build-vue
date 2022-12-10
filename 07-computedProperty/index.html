@@ -1,100 +1,41 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Computed Property</title>
 </head>
-
 <body>
-  <div id="app">
-    <div>
-      구매한 상품명: <input v-model="newName">
-      가격: <input v-model="newPrice" @keyup.enter="addItem" type="number">
-      <button @click="addItem">상품추가</button>
-    </div>
-    <div>
-      가격이 <select v-model="filterPrice">
-        <option value="0" selected>0</option>
-        <option value="1500">1500</option>
-        <option value="2000">2000</option>
-        <option value="5000">5000</option>
-      </select> 원 이상인 상품만 보기
-    </div>
-    <div>
-      가격정렬 : <select v-model="sortProp">
-        <option value="">정렬안함</option>
-        <option value="asc">오름차순</option>
-        <option value="desc">내림차순</option>
-      </select>
-    </div>
-    <div>총 지불금액: {{ totalPrice.toLocaleString() }} </div>
-    <ul>
-      <li v-for="item in filteredItems" :key="item.id">
-        {{item.name}} : {{item.price.toLocaleString()}} : {{item.id}}
-      </li>
-    </ul>
-  </div>
-  <script type="module">
-    import { createApp, ref, reactive, computed } from "../js/vue.esm-browser.js";
-    import UUIDGenerator from "../js/uuid-generator.js"
+ <div id="app">
+  <ul>
+    <li v-for="person in items">{{person.name}} : {{person.age}}</li>
+  </ul>
+  {{ totalAge }}
+ </div> 
+ <script type="module">
+  import { createApp, ref , computed} from '../js/vue.esm-browser.js'
 
-    createApp({
-      setup() {
-        const uuid = UUIDGenerator();
-        const newName = ref('')
-        const newPrice = ref(0)
-        const items = ref([
-          { id: "2db65102-c85e-401b-8e64-88f629678a3e", name: "새우깡", price: 1600 },
-          { id: "52b9ed42-c0f9-474c-aa71-03efdd4cb9d9", name: "초코파이", price: 1700 },
-          { id: "33c94445-caa7-4091-98da-b031a163aaf9", name: "에이스", price: 1230 },
-          { id: "11c75a6d-e3c6-4341-b1f1-c444e01506ca", name: "양파링", price: 2300 },
-        ])
-        function addItem() {
-          let newItem = {
-            id: uuid.next().value,
-            name: newName.value,
-            price: newPrice.value
-          }
-          items.value.push(newItem)
-          newName.value = ''
-          newPrice.value = 0
-        }
-        function caculatedTotalPrice() {
-          // return items.value.reduce((acc, cur) => acc + cur.price, 0)
-          return filteredItems.value.reduce((acc, cur) => acc + cur.price, 0)
-        }
-        const totalPrice = computed(caculatedTotalPrice)
+  createApp({
+    setup() {
+      const items = ref([
+        {id: 1, name: 'matthew', age: 60},
+        {id: 2, name: 'alison', age: 52},
+        {id: 3, name: 'tom', age: 30},
+        {id: 4, name: 'dean', age: 23},
+      ])
+      function calculateTotalAge () {
+        return items.value.reduce((acc, cur) => acc + cur.age, 0)
+      } 
+      const totalAge = computed(calculateTotalAge)
 
-        const filterPrice = ref(0)
-        const filteredItems = computed(() => {
-          let itemList = items.value.filter(item => item.price >= filterPrice.value)
-          if (sortProp.value !== '') {
-            itemList = itemList.sort((a, b) => sortProp.value === 'asc' ?
-              a.price - b.price : b.price - a.price)
-          }
-          return itemList
-        })
-
-        const sortProp = ref('')
-
-        return {
-          newName,
-          newPrice,
-          items,
-          addItem,
-          totalPrice,
-          filterPrice,
-          filteredItems,
-          sortProp
-        }
+      return {
+        items,
+        totalAge
       }
-    }).mount('#app')
+    }
+  }).mount('#app')
 
-
-  </script>
+ </script>
 </body>
-
 </html>

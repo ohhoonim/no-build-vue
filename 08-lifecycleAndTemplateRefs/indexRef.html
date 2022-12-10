@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template ref</title>
+</head>
+<body>
+  <div id="app">
+    <p ref="pTag">hi</p>
+    <button @click="hello">안녕하세요</button>
+  </div> 
+  <script type="module">
+    import {createApp, ref, onMounted} from '../js/vue.esm-browser.js'
+    createApp({
+      setup() {
+        const pTag = ref()
+        function hello() {
+          pTag.value.textContent = "hello!!!"
+        }
+        return {
+          pTag,
+          hello
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>

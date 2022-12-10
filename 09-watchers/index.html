@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watchers</title>
+</head>
+<body>
+ <div id="app">
+  <input v-model="name"><span>{{errMessage}}</span>
+ </div> 
+ <script type="module">
+  import { createApp, ref, watch } from '../js/vue.esm-browser.js'
+  createApp({
+    setup() {
+      const name = ref("")
+      const errMessage = ref("")
+      watch(name, (name) => {
+        if(name.length > 10) {
+          errMessage.value = "10자를 초과합니다. "
+        } else {
+          errMessage.value = ""
+        }
+      })
+      return {
+        name,
+        errMessage
+      }
+    }
+  }).mount('#app')
+ </script>
+</body>
+</html>
