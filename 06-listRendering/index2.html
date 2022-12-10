@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List Rendering</title>
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="(value, key, idx) in myObject">
+        {{ value }} - {{key}} - {{idx}}
+      </li>
+    </ul>
+    <span v-for="num in 10">{{num}}</span>
+  </div>
+  <script type="module">
+    import { createApp, ref, reactive } from '../js/vue.esm-browser.js'
+
+    createApp({
+      setup() {
+        const myObject = reactive({
+          title: 'How to do lists in Vue',
+          author: 'Jane Doe',
+          publishedAt: '2016-04-10'
+        })
+        return {
+          myObject
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+
+</html>
