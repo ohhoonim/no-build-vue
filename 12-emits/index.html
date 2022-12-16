@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emits</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Title</h1>
+        <child-comp :msg="greeting" @response="parentResponse"/>
+    </div>
+    <script type="module">
+        import { createApp, ref } from '../js/vue.esm-browser.js'
+        import ChildComp from './child-comp.js'
+
+        createApp({
+            components: { ChildComp },
+            setup() {
+                const greeting = ref("Hi, there!")
+                function parentResponse (p1, p2) {
+                    console.log(p1 + '   ' + p2)
+                }
+                return {
+                    greeting,
+                    parentResponse
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
