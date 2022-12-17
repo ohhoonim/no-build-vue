@@ -1,6 +1,9 @@
 export default {
-    props: { message: String } , 
+    props: {
+        msg: String,
+        person: String
+    },
     template: `
-      <h2>{{ message || 'No props passed yet' }}</h2>
-      `
+        <h1>{{msg}}, {{person}}</h1> 
+    `
 }

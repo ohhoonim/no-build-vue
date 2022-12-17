@@ -1,7 +1,8 @@
 export default {
     template: `
-        <h1>
-            <slot></slot>
-        </h1> 
+    <article>
+        <h3>article</h3>
+        <slot></slot> 
+    </article>
     `
 }

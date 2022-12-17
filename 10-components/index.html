@@ -1,33 +1,23 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Components</title>
 </head>
-
 <body>
-    <div id="app">
-        <header>
-            <h1>Components</h1>
-        </header>
-         <content-component /> <!--kebab-cased -->
-    </div>
-    <script type="module">
-        import { createApp, onMounted } from '../js/vue.esm-browser.js'
-        import ContentComponent from './ContentComponent.js'
-
-        createApp({
-            components: { ContentComponent },
-            setup() {
-                return {
-
-                }
-            }
-        }).mount('#app')
-    </script>
+   <div id="app">
+    <child-comp></child-comp>
+   </div> 
+   <script type="module">
+    import {createApp} from '../js/vue.esm-browser.js'
+    import ChildComp from './child-comp.js'
+    createApp({
+        components: {
+            ChildComp
+        }
+    }).mount('#app')
+   </script>
 </body>
-
 </html>
