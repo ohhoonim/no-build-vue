@@ -2,4 +2,4 @@
 
 vue3 입문자용 강의소스입니다. 
 
-🔗 [유튜브](https://www.youtube.com/@hobbyMett)
+🔗 [유튜브](https://www.youtube.com/playlist?list=PLeMeDIV7bypvtPDTYWWyRmwvxAAIylIhY)
