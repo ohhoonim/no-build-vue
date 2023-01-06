@@ -16,13 +16,13 @@
       가격: <input v-model="newPrice" @keyup.enter="addItem" type="number">
       <button @click="addItem">상품추가</button>
     </div>
-    <div>
+    <div> 
       가격이 <select v-model="filterPrice">
         <option value="0" selected>0</option>
         <option value="1500">1500</option>
         <option value="2000">2000</option>
         <option value="5000">5000</option>
-      </select> 원 이상인 상품만 보기
+      </select> 원 이상인 상품만 보기 
     </div>
     <div>
       가격정렬 : <select v-model="sortProp">
